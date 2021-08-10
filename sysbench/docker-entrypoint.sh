@@ -1,6 +1,8 @@
 #!/bin/bash 
 set -e
 
-alias ll='ls -l' 
-# pause
+echo 'alias ll="ls -l"' >> ~/.bashrc
+
 sleep ${SLEEP:-0}
+
+exec "$@"
