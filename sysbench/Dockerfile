@@ -16,7 +16,7 @@ RUN apt-get update \
 && rm -rf /var/lib/apt/lists/* 
 
 ENV LANG en_US.utf8
-ENV PAUSE=9999999999999
+ENV SLEEP 9999999999999
 
 VOLUME /workdir
 ENTRYPOINT [ "/run/docker-entrypoint.sh" ]
