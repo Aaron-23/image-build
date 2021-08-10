@@ -1,6 +1,6 @@
 FROM debian:buster
 
-WORKDIR /opt
+WORKDIR /workdir
 ENV TZ="Asia/Shanghai"
 ADD sources.list  /etc/apt/sources.list
 ADD docker-entrypoint.sh  /run/docker-entrypoint.sh
@@ -18,5 +18,5 @@ RUN apt-get update \
 ENV LANG en_US.utf8
 ENV PAUSE=9999999999999
 
-VOLUME /opt
+VOLUME /workdir
 ENTRYPOINT [ "/run/docker-entrypoint.sh" ]
