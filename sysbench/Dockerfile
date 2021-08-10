@@ -19,4 +19,5 @@ ENV LANG en_US.utf8
 ENV SLEEP 9999999999999
 
 VOLUME /workdir
+EXPOSE 6688
 ENTRYPOINT [ "/run/docker-entrypoint.sh" ]
