@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM debian:buster
 
 ENV TZ="Asia/Shanghai"
 ADD sources.list /etc/apt/sources.list
