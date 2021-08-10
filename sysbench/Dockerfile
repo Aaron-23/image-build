@@ -2,7 +2,8 @@ FROM debian:buster
 
 WORKDIR /opt
 ENV TZ="Asia/Shanghai"
-ADD sources.list /etc/apt/sources.list
+ADD sources.list  /etc/apt/sources.list
+ADD docker-entrypoint.sh  /run/docker-entrypoint.sh
 
 RUN apt-get update \
 && apt-get install -y tzdata locales curl fio telnet dnsutils vim procps\
