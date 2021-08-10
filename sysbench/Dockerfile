@@ -1,4 +1,4 @@
-FROM nginx:1.21.1
+FROM ubuntu:18.04
 
 ENV TZ="Asia/Shanghai"
 ADD sources.list /etc/apt/sources.list
@@ -12,5 +12,4 @@ RUN apt-get update \
 
 ENV LANG en_US.utf8
 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["sleep", "9999999999"]
