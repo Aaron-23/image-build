@@ -21,7 +21,7 @@ on:
 #变量配置      
 env:
   #镜像名称
-  IMAGE_NAME: test
+  IMAGE_NAME: bitnami/prometheus
   #dockerHub仓库名称
   DOCKER_REGISTRY: wiseox
 jobs:
@@ -37,7 +37,7 @@ jobs:
       - uses: actions/checkout@v3
       - id: output-id
         run: |
-          VERSION=edge
+          VERSION=2.49.1-debian-11-r1
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             VERSION=${GITHUB_REF#refs/tags/v}
           fi
