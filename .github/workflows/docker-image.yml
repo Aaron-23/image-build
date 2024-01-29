@@ -4,10 +4,16 @@ name: Build images(Multi architecture)
 on:
 #github页面手动触发
   workflow_dispatch: 
+    inputs:
+      new_planet:
+        description: 'image name'
+        required: true
+        default: 'docker.io/bitnami/prometheus:2.49.1-debian-11-r1'
 #打tag触发，必须是v开头的
   push:
     tags:
       - "v*.*"
+
 #变量配置      
 env:
   #镜像名称
