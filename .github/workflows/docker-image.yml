@@ -11,7 +11,7 @@ on:
 #变量配置      
 env:
   #镜像名称
-  IMAGE_NAME: kafka
+  IMAGE_NAME: test
   #dockerHub仓库名称
   DOCKER_REGISTRY: docker-hub.gitee.work
 jobs:
