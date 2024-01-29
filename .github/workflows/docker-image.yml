@@ -12,6 +12,8 @@ on:
 env:
   #镜像名称
   IMAGE_NAME: test
+  #dockerHub仓库名称
+  DOCKER_REGISTRY: docker.io
 jobs:
   build-image:
     #运行的环境  
