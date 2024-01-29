@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 WORKDIR /workdir
 ENV TZ="Asia/Shanghai"
-ADD sources.list  /etc/apt/sources.list
+ADD ../tools/sources.list  /etc/apt/sources.list
 ADD ../tools/docker-entrypoint.sh  /run/docker-entrypoint.sh
 
 RUN apt-get update \
