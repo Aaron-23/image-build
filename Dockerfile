@@ -1,0 +1,1 @@
+FROM bitnami/prometheus:2.49.1-debian-11-r1
