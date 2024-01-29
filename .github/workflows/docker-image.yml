@@ -1,5 +1,5 @@
 #workflow名称
-name: ci
+name: Build images(Multi architecture)
 # 触发条件
 on:
 #github页面手动触发
