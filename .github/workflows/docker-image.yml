@@ -12,7 +12,7 @@ on:
       new_image:
         description: 'new image name'
         required: true
-        default: 'docker-hub.gitee.work/gitee-test/nginx:1.25-alpine'
+        default: 'wiseox/nginx:1.25-alpine'
 #打tag触发，必须是v开头的
   push:
     tags:
