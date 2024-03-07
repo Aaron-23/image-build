@@ -5,14 +5,14 @@ on:
 #github页面手动触发
   workflow_dispatch: 
     inputs:
-      old_image:
+      source_image:
         description: 'source image name'
         required: true
-        default: 'docker.io/bitnami/prometheus:2.49.1-debian-11-r1'
+        default: 'nginx:1.25-alpine'
       new_image:
         description: 'new image name'
         required: true
-        default: 'docker.io/bitnami/prometheus:2.49.1-debian-11-r1'
+        default: 'docker-hub.gitee.work/gitee-test/nginx:1.25-alpine'
 #打tag触发，必须是v开头的
   push:
     tags:
@@ -21,7 +21,7 @@ on:
 #变量配置      
 env:
   #镜像名称
-  IMAGE_NAME: bitnami/prometheus
+  IMAGE_NAME: nginx
   #dockerHub仓库名称
   DOCKER_REGISTRY: wiseox
 jobs:
