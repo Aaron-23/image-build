@@ -27,13 +27,6 @@ jobs:
     steps:
       # 拉取代码，同时获取tag，如果获取不到则默认值为master
       - uses: actions/checkout@v3
-      - id: output-id
-        run: |
-          VERSION=""
-          if [[ $GITHUB_REF == refs/tags/* ]]; then
-            VERSION=${GITHUB_REF#refs/tags/v}
-          fi
-          echo "v=${VERSION}" >> $GITHUB_OUTPUT
           
      # Docker配置多平台环境
       - name: Set up Docker BuildX
@@ -70,7 +63,10 @@ jobs:
             linux/amd64
             linux/arm64
           tags: |
-            ${{ inputs.outputmirror }}: ${{ inputs.outputmirror_tag }}
-            
+            ${{ inputs.outputmirror }}:${{ inputs.outputmirror_tag }}
+
       - name: Image information
-        run: echo "imageid ${{ steps.docker_build.outputs.imageid }}"
+        run: |
+        echo "inputmirror: ${{ inputs.inputmirror }}" /
+        "outputsmirror: ${{ steps.docker_build.outputs.tags }}" /
+        "imageinformation: ${{ steps.docker_build.outputs.imageid }}"
