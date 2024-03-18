@@ -23,7 +23,7 @@ env:
   #镜像名称
   IMAGE_NAME: nginx
   #dockerHub仓库名称
-  DOCKER_REGISTRY: registry.cn-beijing.aliyuncs.com/gitosc/nginx
+  DOCKER_REGISTRY: registry.cn-beijing.aliyuncs.com
 jobs:
   build-image:
     #运行的环境  
@@ -44,7 +44,7 @@ jobs:
           echo "v=${VERSION}" >> $GITHUB_OUTPUT
       # Define the original image
       - name: Define the source image
-        run: echo "$source_image > Dockerfile"
+        run: echo "$source_image > ./Dockerfile && cat ./Dockerfile"
      # Docker配置多平台环境
       - name: Set up Docker BuildX
         uses: docker/setup-buildx-action@v2          
