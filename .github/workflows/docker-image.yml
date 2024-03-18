@@ -13,10 +13,6 @@ on:
         description: 'new image name'
         required: true
         default: 'registry.cn-beijing.aliyuncs.com/gitosc/nginx:1.25-alpine'
-#打tag触发，必须是v开头的
-  push:
-    tags:
-      - "v*.*"
 
 jobs:
   build-image:
@@ -24,8 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TZ: Asia/Shanghai
-    outputs:
-      tags: ${{ steps.output-id.outputs.v }}
     steps:
       # 拉取代码，同时获取tag，如果获取不到则默认值为master
       - uses: actions/checkout@v3
