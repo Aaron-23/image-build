@@ -8,11 +8,11 @@ on:
       inputmirror:
         description: 'inputmirror'
         required: true
-        default: 'nginx:1.25-alpine'
+        default: 'nginx'
       outputmirror:
         description: 'outputmirror'
         required: true
-        default: 'registry.cn-beijing.aliyuncs.com/gitosc/nginx:1.25-alpine'
+        default: 'registry.cn-beijing.aliyuncs.com/gitosc/nginx'
       outputmirror_tag:
         description: 'outputmirror_tag'
         required: true
@@ -67,6 +67,6 @@ jobs:
 
       - name: Image information
         run: |
-        echo inputmirror: "${{ inputs.inputmirror }}" 
-        echo outputsmirror: "${{ steps.docker_build.outputs.tags }}" 
-        echo imageinformation: "${{ steps.docker_build.outputs.imageid }}"
+          echo inputmirror: "${{ inputs.inputmirror }}" 
+          echo outputsmirror: "${{ steps.docker_build.outputs.tags }}" 
+          echo imageinformation: "${{ steps.docker_build.outputs.imageid }}"
