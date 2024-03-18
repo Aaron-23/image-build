@@ -12,7 +12,7 @@ on:
       new_image:
         description: 'new image name'
         required: true
-        default: 'docker-hub.gitee.work/gitee-dev/nginx:1.25-alpine'
+        default: 'registry.cn-beijing.aliyuncs.com/gitosc/nginx:1.25-alpine'
 #打tag触发，必须是v开头的
   push:
     tags:
@@ -23,7 +23,7 @@ env:
   #镜像名称
   IMAGE_NAME: nginx
   #dockerHub仓库名称
-  DOCKER_REGISTRY: docker-hub.gitee.work/gitee-dev/nginx
+  DOCKER_REGISTRY: registry.cn-beijing.aliyuncs.com/gitosc/nginx
 jobs:
   build-image:
     #运行的环境  
