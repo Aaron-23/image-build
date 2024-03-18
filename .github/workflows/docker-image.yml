@@ -5,12 +5,12 @@ on:
 #github页面手动触发
   workflow_dispatch: 
     inputs:
-      source_image:
-        description: 'source image name'
+      inputmirror:
+        description: 'inputmirror'
         required: true
         default: 'nginx:1.25-alpine'
-      new_image:
-        description: 'new image name'
+      outputmirror:
+        description: 'outputmirror'
         required: true
         default: 'registry.cn-beijing.aliyuncs.com/gitosc/nginx:1.25-alpine'
 
@@ -23,7 +23,14 @@ jobs:
     steps:
       # 拉取代码，同时获取tag，如果获取不到则默认值为master
       - uses: actions/checkout@v3
-      
+      - id: output-id
+        run: |
+          VERSION=1.25-alpine
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/v}
+          fi
+          echo "v=${VERSION}" >> $GITHUB_OUTPUT
+          
      # Docker配置多平台环境
       - name: Set up Docker BuildX
         uses: docker/setup-buildx-action@v2  
@@ -41,8 +48,8 @@ jobs:
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: |
-            ${{ inputs.source_image }}
-            ${{ inputs.new_image }}
+            ${{ inputs.inputmirror }}
+            ${{ inputs.outputmirror }}
             
       - name: Build and push Docker images
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
@@ -53,4 +60,7 @@ jobs:
           platforms: |
             linux/amd64
             linux/arm64
+          tags: |
+            ${{ inputs.outputmirror }}:${{ steps.output-id.outputs.v }}
+            ${{ inputs.outputmirror }}:latest
 
