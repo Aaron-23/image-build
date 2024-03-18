@@ -40,13 +40,13 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PWD }}   
           
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-          images: |
-            ${{ inputs.inputmirror }}
-            ${{ inputs.outputmirror }}
+#      - name: Extract metadata (tags, labels) for Docker
+#       id: meta
+#        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+#        with:
+#          images: |
+#            ${{ inputs.inputmirror }}
+#            ${{ inputs.outputmirror }}
 
       - name: "Defining Mirrors"
         run: echo "FROM ${{ inputs.inputmirror }}" > ./Dockerfile
@@ -68,5 +68,5 @@ jobs:
       - name: Image information
         run: |
           echo inputmirror: "${{ inputs.inputmirror }}" 
-          echo outputsmirror: "${{ steps.docker_build.outputs.tags }}" 
+          echo outputsmirror: "${{ inputs.outputmirror }}" 
           echo imageinformation: "${{ steps.docker_build.outputs.imageid }}"
