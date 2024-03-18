@@ -52,7 +52,7 @@ jobs:
             ${{ inputs.outputmirror }}
 
       - name: "Defining Mirrors"
-        run: echo "${{ inputs.inputmirror }}" > ./Dockerfile
+        run: echo "FROM ${{ inputs.inputmirror }}" > ./Dockerfile
           
       - name: Build and push Docker images
         uses: docker/build-push-action@v4
@@ -64,8 +64,6 @@ jobs:
           platforms: |
             linux/amd64
             linux/arm64
-          tags: |
-            ${{ inputs.outputmirror }}:${{ steps.output-id.outputs.v }}
             
       - name: image information
         run: echo "imageid"
