@@ -67,6 +67,6 @@ jobs:
 
       - name: Image information
         run: |
-        echo "inputmirror: ${{ inputs.inputmirror }}" /
-        "outputsmirror: ${{ steps.docker_build.outputs.tags }}" /
-        "imageinformation: ${{ steps.docker_build.outputs.imageid }}"
+        echo inputmirror: "${{ inputs.inputmirror }}" 
+        echo outputsmirror: "${{ steps.docker_build.outputs.tags }}" 
+        echo imageinformation: "${{ steps.docker_build.outputs.imageid }}"
