@@ -18,12 +18,6 @@ on:
     tags:
       - "v*.*"
 
-#变量配置      
-env:
-  #镜像名称
-  IMAGE_NAME: nginx
-  #dockerHub仓库名称
-  DOCKER_REGISTRY: registry.cn-beijing.aliyuncs.com
 jobs:
   build-image:
     #运行的环境  
@@ -42,9 +36,6 @@ jobs:
             VERSION=${GITHUB_REF#refs/tags/v}
           fi
           echo "v=${VERSION}" >> $GITHUB_OUTPUT
-      # Define the original image
-      - name: Define the source image
-        run: echo "$source_image > ./Dockerfile && cat ./Dockerfile"
      # Docker配置多平台环境
       - name: Set up Docker BuildX
         uses: docker/setup-buildx-action@v2          
@@ -55,7 +46,10 @@ jobs:
           registry: ${{ secrets.DOCKER_REGISTRY }}
         #这里引用的变量为上一步配置的变量
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_PWD }}     
+          password: ${{ secrets.DOCKER_HUB_PWD }}   
+      # Define the original image
+      - name: Define the source image
+        run: echo "$source_image > ./Dockerfile && cat ./Dockerfile"
       # 打包构建并推送
       - name: Build and push
         uses: docker/build-push-action@v4
@@ -67,9 +61,5 @@ jobs:
             linux/arm64
           #推送到镜像仓库  
           push: true
-          # 这里会构建两个版本镜像，
-          # 1.dweizhao/backend:latest
-          # 2.  output-id步骤中获取的v，构建dweizhao/backend:edge或者dweizhao/backend:对应tag值
           tags: |
-            ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.output-id.outputs.v }}
-            ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            $new_image
