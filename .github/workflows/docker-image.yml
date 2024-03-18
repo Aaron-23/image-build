@@ -12,7 +12,7 @@ on:
       new_image:
         description: 'new image name'
         required: true
-        default: 'wiseo/nginx:1.25-alpine'
+        default: 'docker-hub.gitee.work/gitee-dev/nginx:1.25-alpine'
 #打tag触发，必须是v开头的
   push:
     tags:
@@ -23,7 +23,7 @@ env:
   #镜像名称
   IMAGE_NAME: nginx
   #dockerHub仓库名称
-  DOCKER_REGISTRY: wiseo/nginx
+  DOCKER_REGISTRY: docker-hub.gitee.work/gitee-dev/nginx
 jobs:
   build-image:
     #运行的环境  
@@ -49,6 +49,7 @@ jobs:
       - name: Login Docker Hub
         uses: docker/login-action@v1
         with:
+          registry: ${{ secrets.DOCKER_HUB_REGISTRY }}
         #这里引用的变量为上一步配置的变量
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PWD }}     
