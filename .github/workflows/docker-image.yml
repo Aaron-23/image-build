@@ -49,7 +49,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_PWD }}   
       # Define the original image
       - name: Define the source image
-        run: echo "$source_image > ./Dockerfile && cat ./Dockerfile"
+        run: echo "FROM $source_image > ./Dockerfile && cat ./Dockerfile"
       # 打包构建并推送
       - name: Build and push
         uses: docker/build-push-action@v4
