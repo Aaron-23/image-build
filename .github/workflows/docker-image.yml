@@ -42,6 +42,9 @@ jobs:
             VERSION=${GITHUB_REF#refs/tags/v}
           fi
           echo "v=${VERSION}" >> $GITHUB_OUTPUT
+      # Define the original image
+      - name: Define the source image
+        run: echo "$source_image > Dockerfile"
      # Docker配置多平台环境
       - name: Set up Docker BuildX
         uses: docker/setup-buildx-action@v2          
