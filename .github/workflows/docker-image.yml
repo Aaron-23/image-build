@@ -13,7 +13,11 @@ on:
         description: 'outputmirror'
         required: true
         default: 'registry.cn-beijing.aliyuncs.com/gitosc/nginx:1.25-alpine'
-
+      outputmirror_tag:
+        description: 'outputmirror_tag'
+        required: true
+        default: 'latest'
+        
 jobs:
   build-image:
     #运行的环境  
@@ -56,6 +60,7 @@ jobs:
           
       - name: Build and push Docker images
         uses: docker/build-push-action@v4
+        id: docker_build
         with:
           context: .
           file: ./Dockerfile
@@ -65,7 +70,7 @@ jobs:
             linux/amd64
             linux/arm64
           tags: |
-            ${{ inputs.outputmirror }}:latest
+            ${{ inputs.outputmirror }}: ${{ inputs.outputmirror_tag }}
             
-      - name: image information
-        run: echo "imageid"
+      - name: Image information
+        run: echo "imageid ${{ steps.docker_build.outputs.imageid }}"
